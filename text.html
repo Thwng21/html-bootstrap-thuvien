@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Button Tooltip</title>
+    <style>
+
+        .button-like {
+            position: relative;
+            display: inline-block;
+        }
+
+   
+        .like {
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(5%);
+            background: rgba(223, 214, 214, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.6s;
+        }
+
+        .button-like:hover .like {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="button-like">
+        <button style="cursor: pointer;" class="hover-button">Di chuột vào</button>
+        <div style="height: 500px; width: 500px;" class="like">
+            
+        </div>
+    </div>
+
+</body>
+</html>

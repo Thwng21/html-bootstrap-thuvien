@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dropdown Menu Nhiều Cột</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!--svg-->
+    <svg id="my-svg" width="300" height="200" viewBox="0 0 300 200">
+        <path d="M10 10 H 290 V 190 H 10 Z" stroke="#007bff" stroke-width="3" fill="none"/>
+      </svg>
+      <!-- Thêm thư viện Vivus -->
+<script src="https://cdn.jsdelivr.net/npm/vivus@latest/dist/vivus.min.js"></script>
+<script>
+    new Vivus('my-svg', {duration: 200, type: 'delayed'});
+    </script>
+
+    <!--thư viên aos-->
+    <!-- Thêm thư viện AOS (Animate On Scroll) -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+</head>
+<!--nội dung ẩn-->
+<body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <button class="btn btn-primary animate__animated animate__bounce">Nhấn vào</button>
+  <button class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#content">
+    Hiển thị nội dung
+  </button>
+  
+  <div id="content" class="collapse">
+    <p>Đây là nội dung ẩn, bấm nút để hiển thị.</p>
+  </div>
+  <!-- -------------------------------------------------------------------- -->
+  <!-- Nút mở modal --> <!--hiển thị thông báobáo-->
+<button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+    Mở popup
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Các truyện mở rộng</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+        Nội dung ở đây!  
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- -------------------------------------------------------------------- -->
+   <!--TRƯỢT CARD KHI HOVER-->
+  <style>
+    .card-slide {
+      transition: transform 0.1s ease-in-out;
+    }
+    .card-slide:hover {
+      transform: translateX(10px);
+    }
+    </style>
+    
+    <div class="card card-slide" style="width: 18rem;">
+      <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card Slide</h5>
+        <p class="card-text">Di chuột vào để thấy hiệu ứng trượt.</p>
+      </div>
+    </div>
+    
+    <!--HIỂN ẢNH, MỜ CHỮ HOVER-->
+    <style>
+        .card-overlay {
+          position: relative;
+          overflow: hidden;
+        }
+        .card-overlay img {
+          transition: opacity 0.3s ease-in-out;
+        }
+        .card-overlay:hover img {
+          opacity: 0.3;
+        }
+        .card-overlay .overlay-text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 20px;
+          font-weight: bold;
+          color: white;
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+        }
+        .card-overlay:hover .overlay-text {
+          opacity: 1;
+        }
+        </style>
+        
+        <div class="card card-overlay" style="width: 18rem;">
+          <img src="images/noibac/1.jpg" class="card-img-top" alt="...">
+            <div style="text-align: center;" class="overlay-text text-dark">GWOUTH Hotel </div>
+          </div>
+        </div>
+        <!-------------------------------------------------------------------------------------->
+        <!--navbar-->
+        <style>
+            .navbar-transparent {
+              background: transparent;
+              transition: background 1s;
+            }
+            .navbar-colored {
+              background: rgba(131, 65, 65, 0.9) !important;
+            }
+            </style>
+            
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-transparent">
+              <div class="container">
+                <a class="navbar-brand" href="#">My Navbar</a>
+              </div>
+            </nav>
+            
+            <script>
+            window.addEventListener("scroll", function () {
+              const navbar = document.querySelector(".navbar");
+              if (window.scrollY > 50) {
+                navbar.classList.add("navbar-colored");
+              } else {
+                navbar.classList.remove("navbar-colored");
+              }
+            });
+            </script>
+           <!------------------------------------gõ chữ-------------------------------------------------->  
+           <style>
+            .typing {
+              display: inline-block;
+              overflow: hidden;
+              border-right: 3px solid black;
+              white-space: nowrap;
+              animation: typing 3s steps(10) infinite, blink 0.7s infinite;
+            }
+            @keyframes typing {
+              from { width: 0; }
+              to { width: 100%; }
+            }
+            @keyframes blink {
+              50% { border-color: transparent; }
+            }
+            </style>
+            
+            <h2 class="typing">Xin chào! Chào mừng bạn đến với website.</h2>
+            <!------------------------------------ Doi nen gradient-------------------------------------------------->
+            
+            <style>
+                .animated-bg {
+                  height: 100vh;
+                  background: linear-gradient(-45deg, #ff9a9e, #d36c4f, #fad0c4, #ffdde1);
+                  background-size: 400% 400%;
+                  animation: gradientBG 5s infinite ease-in-out;
+                }
+                @keyframes gradientBG {
+                  0% { background-position: 0% 50%; }
+                  50% { background-position: 100% 50%; }
+                  100% { background-position: 0% 50%; }
+                }
+                </style>
+                
+                <div class="animated-bg"></div>
+               
+                <!--ảnh mờ, khi hover thì hiện rõ-->
+             
+                <style>
+                    .img-pixel {
+                      width: 300px;
+                      filter: blur(5px);
+                      transition: filter 0.5s ease-in-out;
+                    }
+                    .img-pixel:hover {
+                      filter: blur(0);
+                    }
+                    </style>
+                    
+                    <img src="images/noibac/1.jpg" class="img-pixel">
+                   <!--ảnh sang len khi hoverhover--> 
+                    <style>
+                        .img-glow {
+                          width: 300px;
+                          transition: box-shadow 0.3s ease-in-out;
+                        }
+                        .img-glow:hover {
+                          box-shadow: 0 0 20px rgba(173, 32, 32, 0.8);
+                        }
+                        </style>
+                        
+                        <img src="images/feedback/avt_1.jpg" class="img-glow">
+                        
+                        <!--Waiting load-->
+                        <!-- <style>
+                            #preloader {
+                              position: fixed;
+                              left: 0;
+                              top: 0;
+                              width: 100%;
+                              height: 100%;
+                              background: #fff;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              z-index: 9999;
+                            }
+                            .spinner {
+                              width: 50px;
+                              height: 50px;
+                              border: 5px solid #ccc;
+                              border-top: 5px solid #007bff;
+                              border-radius: 50%;
+                              animation: spin 1s linear infinite;
+                            }
+                            @keyframes spin {
+                              100% { transform: rotate(360deg); }
+                            }
+                            </style>
+                            
+                            <div id="preloader">
+                              <div class="spinner"></div>
+                            </div>
+                            
+                            <script>
+                            window.addEventListener("load", function() {
+                              document.getElementById("preloader").style.display = "none";
+                            });
+                            </script> -->
+                            <!--------------------------------------------------------------->
+
+                            <!-- Thêm thư viện particles.js -->
+<script src="images/noibac/1.jpg"></script>
+
+<!-- Container cho particles -->
+<div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
+
+<script>
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 80 },
+    "color": { "value": "#007bff" },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.5 },
+    "size": { "value": 3 },
+    "line_linked": { "enable": true, "distance": 150, "color": "#007bff", "opacity": 0.4, "width": 1 },
+    "move": { "enable": true, "speed": 4 }
+  }
+});
+</script>
+
+                    
+              
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Bootstrap JS (Cần thiết cho hiệu ứng) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+
+  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
