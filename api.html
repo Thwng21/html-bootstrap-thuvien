@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Thanh Toán Cá Nhân</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #qr-code img {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>QR Thanh Toán Cá Nhân</h1>
+    <div class="container">
+        <label for="bank">Ngân hàng của bạn:</label>
+        <select id="bank">
+            <option value="970422">MB</option>
+            <option value="970415">VietinBank</option>
+            <option value="970416">ACB</option>
+            <option value="970418">BIDV</option>
+            <option value="970423">TPBank</option>
+        </select>
+
+        <label for="account">Số tài khoản nhận:</label>
+        <input type="text" id="account" value="2830184215204" placeholder="Nhập số tài khoản của bạn" readonly>
+
+        <label for="amount">Số tiền (VND):</label>
+        <input type="number" id="amount" placeholder="Nhập số tiền" oninput="generateQRCode()">
+
+        <label for="message">Nội dung:</label>
+        <input type="text" id="message" placeholder="Nhập nội dung" oninput="generateQRCode()">
+
+        <div id="qr-code"></div>
+    </div>
+
+    <script>
+        function generateQRCode() {
+            let bankCode = document.getElementById("bank").value;
+            let account = document.getElementById("account").value;
+            let amount = document.getElementById("amount").value;
+            let message = document.getElementById("message").value;
+            let qrCodeDiv = document.getElementById("qr-code");
+
+            if (!amount) {
+                qrCodeDiv.innerHTML = "";
+                return;
+            }
+
+            // Tạo URL QR Code
+            let qrUrl = `https://img.vietqr.io/image/${bankCode}-${account}-qr.png?amount=${amount}&addInfo=${encodeURIComponent(message)}`;
+
+            // Hiển thị QR
+            qrCodeDiv.innerHTML = `<img src="${qrUrl}" alt="QR Code">`;
+        }
+    </script>
+
+</body>
+</html>

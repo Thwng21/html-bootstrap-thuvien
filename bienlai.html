@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quán Nhậu Vân Xe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        #receipt { padding: 20px; border: 1px dashed #333; width: 350px; margin: auto; background: #fff; }
+        #receipt h2 { font-size: 1.5rem; margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; }
+        table, th, td { border: 1px solid #ddd; text-align: center; }
+
+        @media print {
+            .container { display: none; }
+            #receiptWrapper { display: block !important; }
+            #productTable { display: none; }
+            #receiptWrapper { display: flex; flex-direction: column; gap: 20px; }
+        }
+
+        .quantity-btn { width: 30px; height: 30px; }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">QUÁN NHẬU VÂN XE</h1>
+
+        <div class="mb-3">
+            <label for="customerName" class="form-label">Tên khách hàng:</label>
+            <input type="text" id="customerName" class="form-control" placeholder="Nhập tên khách hàng">
+        </div>
+
+        <div class="mb-3">
+            <label for="productName" class="form-label">Tên sản phẩm:</label>
+            <input type="text" id="productName" class="form-control" placeholder="Nhập tên sản phẩm">
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Đơn giá:</label>
+            <input type="number" id="price" class="form-control" placeholder="Nhập đơn giá">
+        </div>
+
+        <button id="addProduct" class="btn btn-success w-100 mb-3">Thêm vào hóa đơn</button>
+
+        <h2 class="text-center mb-3">Danh sách sản phẩm</h2>
+        <table class="table table-bordered" id="productTable">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                    <th>Xóa/Thêm</th>
+                </tr>
+            </thead>
+            <tbody id="productList"></tbody>
+        </table>
+
+        <button id="generateReceipt" class="btn btn-primary w-100">Tạo và In Hóa Đơn</button>
+    </div>
+
+    <div id="receiptWrapper" style="display: none;">
+        <!-- Hóa đơn cho khách hàng -->
+        <div id="receipt" class="mt-4 text-center">
+            <h2>HÓA ĐƠN BÁN HÀNG</h2>
+            <h5>QUÁN NHẬU VÂN XE</h5>
+            <p><strong>Khách hàng:</strong> <span id="rCustomerName"></span></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="rProductList"></tbody>
+            </table>
+            <p><strong>Tổng tiền:</strong> <span id="rTotal"></span> đ</p>
+            <p><strong>Giờ xuất hóa đơn:</strong> <span id="rTime"></span></p>
+            <p><em>Cảm ơn quý khách!</em></p>
+        </div>
+
+        <!-- Hóa đơn lưu lại cho quán -->
+        <div id="receipt" class="mt-4 text-center">
+            <h2>HÓA ĐƠN QUÁN GIỮ</h2>
+            <h5>QUÁN NHẬU VÂN XE</h5>
+            <p><strong>Khách hàng:</strong> <span id="rCustomerName2"></span></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="rProductList2"></tbody>
+            </table>
+            <p><strong>Tổng tiền:</strong> <span id="rTotal2"></span> đ</p>
+            <p><strong>Giờ xuất hóa đơn:</strong> <span id="rTime2"></span></p>
+            <p><em>Lưu trữ nội bộ</em></p>
+        </div>
+    </div>
+
+    <script>
+        let productList = [];
+
+        document.getElementById("addProduct").addEventListener("click", () => {
+            const productName = document.getElementById("productName").value;
+            const price = parseFloat(document.getElementById("price").value);
+
+            if (!productName || isNaN(price) || price <= 0) {
+                alert("Vui lòng nhập tên sản phẩm và giá hợp lệ!");
+                return;
+            }
+
+            productList.push({ productName, price, quantity: 1 });
+            renderProductTable();
+            document.getElementById("productName").value = "";
+            document.getElementById("price").value = "";
+        });
+
+        function renderProductTable() {
+            const productTable = document.getElementById("productList");
+            productTable.innerHTML = "";
+
+            productList.forEach((product, index) => {
+                productTable.innerHTML += `
+                    <tr>
+                        <td>${product.productName}</td>
+                        <td>
+                            <button class="btn btn-secondary quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                            ${product.quantity}
+                            <button class="btn btn-secondary quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        </td>
+                        <td>${product.price.toLocaleString()}</td>
+                        <td>${(product.price * product.quantity).toLocaleString()}</td>
+                        <td><button class="btn btn-danger btn-sm" onclick="deleteProduct(${index})">Xóa</button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        function updateQuantity(index, change) {
+            productList[index].quantity += change;
+            if (productList[index].quantity < 1) productList[index].quantity = 1;
+            renderProductTable();
+        }
+
+        function deleteProduct(index) {
+            productList.splice(index, 1);
+            renderProductTable();
+        }
+
+        document.getElementById("generateReceipt").addEventListener("click", () => {
+            const customerName = document.getElementById("customerName").value;
+            if (!customerName || productList.length === 0) {
+                alert("Vui lòng nhập tên khách hàng và thêm ít nhất 1 sản phẩm!");
+                return;
+            }
+
+            document.getElementById("rCustomerName").textContent = customerName;
+            document.getElementById("rCustomerName2").textContent = customerName;
+            const receiptBody = document.getElementById("rProductList");
+            let totalPrice = 0;
+
+            receiptBody.innerHTML = productList.map((p) => {
+                totalPrice += p.price * p.quantity;
+                return `<tr><td>${p.productName}</td><td>${p.quantity}</td><td>${p.price.toLocaleString()}</td><td>${(p.price * p.quantity).toLocaleString()}</td></tr>`;
+            }).join("");
+
+            document.getElementById("rProductList2").innerHTML = receiptBody.innerHTML;
+            document.getElementById("rTotal").textContent = totalPrice.toLocaleString();
+            document.getElementById("rTotal2").textContent = totalPrice.toLocaleString();
+            document.getElementById("rTime").textContent = new Date().toLocaleString("vi-VN");
+            document.getElementById("rTime2").textContent = new Date().toLocaleString("vi-VN");
+
+            document.getElementById("receiptWrapper").style.display = "block";
+            window.print();
+        });
+    </script>
+</body>
+</html>

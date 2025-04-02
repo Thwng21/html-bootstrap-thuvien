@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
+    <!--font-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!--Animation-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!--bootstrap-->
@@ -17,6 +19,9 @@
 
 <body>
     <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
         .card:hover {
             transform: scale(1.05);
             /* Phóng to 10% */
@@ -43,7 +48,7 @@
     <!--navbar-->
     <nav style="position: fixed; top:0%; left: 0%; width: 100%; padding: 10px 0; z-index: 1000;" class="navbar navbar-expand-lg bg-body-tertiary">
         <div style="background-color: black;" class="container-fluid">
-            <a style="color: aliceblue;" class="navbar-brand" href="library.html">GWOUTH</a>
+            <a style="color: aliceblue;" class="navbar-brand" href="library.html"><b>GWOUTH</b></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -54,8 +59,18 @@
                     <li class="nav-item">
                         <a class="nav-link active text-white " aria-current="page" href="library.html">Trang chủ</a>
                     </li>
-                    <li class="nav-item-i dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                   
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#moi-product" aria-disabled="true">Truyện mới</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#hot-product" aria-disabled="true">Truyện hot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#hoanthanh-product" aria-disabled="true">Hoàn thành</a>
+                    </li>
+                    <li style="border-radius: 5px;" class="nav-item-i dropdown bg-success ms-2">
+                        <a class="nav-link dropdown-toggle text-white" title="click vào!" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Thể loại
                         </a>
@@ -69,15 +84,6 @@
                             </li>
                             <li><a class="dropdown-item " href="#">Truyện khác</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#moi-product" aria-disabled="true">Truyện mới</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#hot-product" aria-disabled="true">Truyện hot</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#hoanthanh-product" aria-disabled="true">Hoàn thành</a>
                     </li>
                     <div style="width: 50px;" class="dropdown ms-2">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -204,8 +210,8 @@
                     <div class="modal-body">
                         <div class="card">
                             <div class="row">
-                                <div class="col-4">
-                                    <img style="height: 150px; width: 150px; margin-left: 8px; margin-top: 15px;" src="images/Gwouth_1.png" alt="">
+                                <div  class="col-4">
+                                    <img style="height: 150px; width: 150px; margin-top: 15px; margin-left: 10px;" src="images/Gwouth_1.png" alt="">
                                 </div>
                                 <div class="col-2">
                                     <div style="width: 300px;" class="card">

@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    
     <style>
         .card:hover {
             transform: scale(1.05);
@@ -226,9 +227,10 @@
                         <h5 style="color: white; ">Tên truyện: <b> Doraemon</b></h5>
                         <p style="color: white; ">Số chương: <b style="color: red;">725 </b>chương</p>
                         <p style="color: white; ">Lượt xem: <b style="color: red;">12.5K </b>lượt</p>
+                        <p style="color: white; ">Lượt thích: <b style="color: rgb(12, 128, 10);" id="item-like">12200 </b>lượt</p>
                         
-                        <button type="button" class="btn btn-outline-primary"> <i style="padding-right: 10px;" class="bi bi-hand-thumbs-up-fill"></i>Thích</button>
-                        <button type="button" class="btn btn-outline-primary"> <i style="padding-right: 10px;" class="bi bi-share"></i> Share</button>
+                        <button type="button" class="btn btn-outline-primary" id="btn-like"> <i style="padding-right: 10px;" class="bi bi-hand-thumbs-up-fill"></i>Thích</button>
+                        <button type="button" class="btn btn-outline-primary" id="btn-share"> <i style="padding-right: 10px;" class="bi bi-share"></i> Share</button>
                         <hr style="color: white;">
                         <p style="color: white; margin-left: 30px;">Mô tả:</p>
                         <p style="color: white; margin-left: 30px;">Doraemon là một bộ truyện tranh nổi tiếng của Nhật
@@ -240,7 +242,7 @@
                         <p style="color: white;"><i><b>Lưu ý:</b> Bạn chỉ được đọc 1 chương đầu, nếu muốn đọc nhiều hơn
                                 hãy nhấn vào <b>Đọc thêm !</b></i></p>
                         <button type="button" class="btn btn-warning">Đọc</button>
-                        <button type="button" class="btn btn-success">Đọc thêm</button>
+                        <button  type="button" class="btn btn-success"><a style="color: white; text-decoration: none;" href="payment.html">Đọc thêm</a></button>
                     </div>
                 </div>
             </div>
@@ -448,6 +450,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+            <script src="./app/info.js"></script>
 </body>
 
 </html>

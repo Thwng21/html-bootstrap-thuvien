@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhập Thông Tin Sinh Viên</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Hộp thoại (modal) */
+        .modal {
+            display: none; /* Ẩn mặc định */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); /* Màu nền mờ */
+            padding-top: 60px;
+        }
+
+        /* Nội dung của hộp thoại */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        /* Nút đóng hộp thoại */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        input {
+            display: block;
+            width: 300pxc;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Nhập Thông Tin Sinh Viên</h2>
+
+    <!-- Hộp thoại nhập thông tin sinh viên -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Nhập Thông Tin Sinh Viên</h3>
+            <form id="studentForm">
+                <label for="studentName">Tên Sinh Viên:</label>
+                <input type="text" id="studentName" placeholder="Nhập tên sinh viên" required>
+                <label for="studentID">Mã Sinh Viên:</label>
+                <input type="text" id="studentID" placeholder="Nhập mã sinh viên" required>
+                <label for="studentCourse">Khóa Học:</label>
+                <input type="text" id="studentCourse" placeholder="Nhập khóa học" required>
+                <button type="submit">Lưu Thông Tin</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("studentModal");
+        var span = document.getElementsByClassName("close")[0];
+        var studentForm = document.getElementById("studentForm");
+
+        // Lắng nghe sự kiện nhấn phím
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "c" || event.key === "C") {
+                modal.style.display = "block"; // Mở hộp thoại khi nhấn "C"
+            }
+        });
+
+        // Khi người dùng nhấn "X" để đóng hộp thoại
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Khi người dùng nhấn ra ngoài hộp thoại
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Xử lý sự kiện submit form
+        studentForm.onsubmit = function(event) {
+            event.preventDefault(); // Ngăn chặn reload trang khi submit
+            var studentName = document.getElementById("studentName").value;
+            var studentID = document.getElementById("studentID").value;
+            var studentCourse = document.getElementById("studentCourse").value;
+
+            alert("Thông tin sinh viên:\nTên: " + studentName + "\nMã: " + studentID + "\nKhóa học: " + studentCourse);
+            
+            modal.style.display = "none"; // Đóng hộp thoại sau khi lưu thông tin
+        }
+    </script>
+
+</body>
+</html>
+c
